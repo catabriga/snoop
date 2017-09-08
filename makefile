@@ -4,9 +4,8 @@ INCLUDES =
 CFLAGS = -c -Wall $(INCLUDES)
 LDFLAGS =
 LIBS = -lwiringPi
-SOURCES =	main.c
-HEADERS =
-HEADERS =
+SOURCES = main.c MotorControllerWiringpi.cpp
+HEADERS = MotorController.h MotorControllerWiringpi.h
 OBJECTS = $(patsubst %.cpp,%.o,$(patsubst %.c,%.o,$(SOURCES)))
 EXECUTABLE = snoop
 
