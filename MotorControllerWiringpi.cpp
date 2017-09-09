@@ -13,7 +13,7 @@
 
 MotorControllerWiringpi* MotorControllerWiringpi::getInstance(void)
 {
-    static MotorControllerWiringpi wiringpiController();
+    static MotorControllerWiringpi wiringpiController;
 
     return (&wiringpiController);
 }
