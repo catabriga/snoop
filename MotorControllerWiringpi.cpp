@@ -10,9 +10,9 @@
 #define MOTOR_B_IN1_PIN 22
 #define MOTOR_B_IN2_PIN 23
 
-static MotorControllerWiringpi wiringpiController();
+static MotorControllerWiringpi wiringpiController;
 
-static MotorControllerWiringpi* getInstance(void)
+static MotorControllerWiringpi* MotorControllerWiringpi::getInstance(void)
 {
     return (&wiringpiController);
 }
