@@ -2,9 +2,22 @@
 #include "MotorControllerWiringpi.h"
 
 #include <cstdio>
+#include <unistd.h>
+#include <cstdlib>
+
+static void checkRoot(void)
+{
+    if(getuid() != 0)
+    {
+        printf("Must run as root! Aborting...\n");
+        std::exit(EXIT_FAILURE);
+    }
+}
 
 int main(void)
 {
+    checkRoot();
+
     MotorController* motorController;
 
     motorController = MotorControllerWiringpi::getInstance();
