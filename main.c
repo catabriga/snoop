@@ -1,7 +1,7 @@
 #include "MotorController.h"
 #include "MotorControllerWiringpi.h"
 
-#include <wiringPi.h>
+#include <cstdio>
 
 int main(void)
 {
@@ -13,10 +13,16 @@ int main(void)
     {
         motorController->setMotorA(60);
         motorController->setMotorB(60);
-        delay(2000);
+
+        scanf("Press something");
+        getchar();
+
         motorController->setMotorA(-60);
         motorController->setMotorB(-60);
-        delay(2000);
+
+        scanf("Press something");
+        getchar();
+
     }
 
     return 0;
