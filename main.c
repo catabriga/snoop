@@ -1,5 +1,5 @@
-#include <MotorController.h>
-#include <MotorControllerWiringpi.h>
+#include "MotorController.h"
+#include "MotorControllerWiringpi.h"
 
 #include <wiringPi.h>
 
@@ -15,7 +15,7 @@ int main(void)
         motorController->setMotorB(60);
         delay(2000);
         motorController->setMotorA(-60);
-        motorController->setMotorB(-60);        
+        motorController->setMotorB(-60);
         delay(2000);
     }
 
