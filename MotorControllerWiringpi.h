@@ -5,7 +5,7 @@
 
 #include "MotorController.h"
 
-class MotorControllerWiringpi: MotorController
+class MotorControllerWiringpi: public MotorController
 {
 public:
     static MotorControllerWiringpi* getInstance(void);
