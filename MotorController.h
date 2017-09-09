@@ -14,4 +14,4 @@ protected:
     // (as only a single motor can be connected to the raspberry)
     // The protected constructor will enable the creation of inherited singletons
     MotorController(void){};
-}
+};
