@@ -1,15 +1,22 @@
+#include <MotorController.h>
+#include <MotorControllerWiringpi.h>
+
 #include <wiringPi.h>
 
 int main(void)
 {
-    wiringPiSetup();
-    pinMode(0, OUTPUT);
-    for(;;)
+    MotorController* motorController;
+
+    motorController = MotorControllerWiringpi::getInstance();
+
+    while(1)
     {
-        digitalWrite(0, HIGH);
-        delay(1000);
-        digitalWrite(0, LOW);
-        delay(1000);
+        motorController->setMotorA(60);
+        motorController->setMotorB(60);
+        delay(2000);
+        motorController->setMotorA(-60);
+        motorController->setMotorB(-60);        
+        delay(2000);
     }
 
     return 0;
