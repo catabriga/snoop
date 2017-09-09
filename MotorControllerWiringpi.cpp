@@ -22,11 +22,11 @@ MotorControllerWiringpi::MotorControllerWiringpi(void)
 {
     wiringPiSetup();
 
-    pinMode(MOTOR_A_ENABLE_PIN, OUTPUT);
+    pinMode(MOTOR_A_ENABLE_PIN, PWM_OUTPUT);
     pinMode(MOTOR_A_IN1_PIN, OUTPUT);
     pinMode(MOTOR_A_IN2_PIN, OUTPUT);
 
-    pinMode(MOTOR_B_ENABLE_PIN, OUTPUT);
+    pinMode(MOTOR_B_ENABLE_PIN, PWM_OUTPUT);
     pinMode(MOTOR_B_IN1_PIN, OUTPUT);
     pinMode(MOTOR_B_IN2_PIN, OUTPUT);
 
