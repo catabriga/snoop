@@ -3,7 +3,7 @@ CXX = g++ -std=c++0x
 INCLUDES =
 CFLAGS = -c -Wall $(INCLUDES)
 LDFLAGS =
-LIBS = -lwiringPi
+LIBS = -lm -lwiringPi
 SOURCES = main.c MotorControllerWiringpi.cpp
 HEADERS = MotorController.h MotorControllerWiringpi.h
 OBJECTS = $(patsubst %.cpp,%.o,$(patsubst %.c,%.o,$(SOURCES)))

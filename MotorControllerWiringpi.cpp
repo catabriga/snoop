@@ -1,6 +1,7 @@
 #include "MotorControllerWiringpi.h"
 
 #include <wiringPi.h>
+#include <math.h>
 
 #define MOTOR_A_ENABLE_PIN 1
 #define MOTOR_A_IN1_PIN 4
@@ -10,10 +11,10 @@
 #define MOTOR_B_IN1_PIN 22
 #define MOTOR_B_IN2_PIN 23
 
-static MotorControllerWiringpi wiringpiController;
-
-static MotorControllerWiringpi* MotorControllerWiringpi::getInstance(void)
+MotorControllerWiringpi* MotorControllerWiringpi::getInstance(void)
 {
+    static MotorControllerWiringpi wiringpiController();
+
     return (&wiringpiController);
 }
 
