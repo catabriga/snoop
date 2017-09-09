@@ -1,3 +1,5 @@
+#ifndef MOTORCONTROLLER_H
+#define MOTORCONTROLLER_H
 
 #include <cstdint>
 
@@ -15,3 +17,5 @@ protected:
     // The protected constructor will enable the creation of inherited singletons
     MotorController(void){};
 };
+
+#endif

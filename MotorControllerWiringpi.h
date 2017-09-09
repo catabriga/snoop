@@ -1,3 +1,6 @@
+#ifndef MOTORCONTROLLERWIRINGPI_H
+#define MOTORCONTROLLERWIRINGPI_H
+
 #include <cstdint>
 
 #include "MotorController.h"
@@ -14,3 +17,5 @@ protected:
     MotorControllerWiringpi(void);
 
 };
+
+#endif
