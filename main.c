@@ -14,13 +14,13 @@ int main(void)
         motorController->setMotorA(60);
         motorController->setMotorB(60);
 
-        scanf("Press something");
+        printf("Press something");
         getchar();
 
         motorController->setMotorA(-60);
         motorController->setMotorB(-60);
 
-        scanf("Press something");
+        printf("Press something");
         getchar();
 
     }
