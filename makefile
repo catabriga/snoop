@@ -1,9 +1,9 @@
 CC = gcc
 CXX = g++ -std=c++0x
 INCLUDES =
-CFLAGS = -c -Wall -DUSE_WEBSOCKET $(INCLUDES)
+CFLAGS = -c -Wall -DUSE_WEBSOCKET -DLINUX $(INCLUDES)
 LDFLAGS =
-LIBS = -lm -lwiringPi
+LIBS = -lm -lpthread -lrt -ldl -lwiringPi
 SOURCES = main.c MotorControllerWiringpi.cpp civetweb/civetweb.c civetweb/CivetServer.cpp
 HEADERS = MotorController.h MotorControllerWiringpi.h civetweb/civetweb.h civetweb/CivetServer.cpp
 OBJECTS = $(patsubst %.cpp,%.o,$(patsubst %.c,%.o,$(SOURCES)))
@@ -30,4 +30,4 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(CFLAGS) $< -o $@
 
 clean:
-	rm -f *.o $(EXECUTABLE)
+	rm -f *.o */*.o $(EXECUTABLE)
