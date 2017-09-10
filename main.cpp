@@ -1,9 +1,13 @@
-#include "MotorController.h"
-#include "MotorControllerWiringpi.h"
-
 #include <cstdio>
 #include <unistd.h>
 #include <cstdlib>
+
+#include "MotorController.h"
+#include "MotorControllerWiringpi.h"
+
+#include "civetweb/CivetServer.h"
+
+static CivetServer* webServer;
 
 static void checkRoot(void)
 {
@@ -14,9 +18,19 @@ static void checkRoot(void)
     }
 }
 
+static void startWebServer(void)
+{
+	const char *options[] = {
+	    "document_root", "webRoot", 0};
+
+	webServer = new CivetServer(options);
+}
+
 int main(void)
 {
     checkRoot();
+
+	startWebServer();
 
     MotorController* motorController;
 
