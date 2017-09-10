@@ -1,7 +1,7 @@
 CC = gcc
 CXX = g++ -std=c++0x
 INCLUDES =
-CFLAGS = -c -Wall $(INCLUDES)
+CFLAGS = -c -Wall -DUSE_WEBSOCKET $(INCLUDES)
 LDFLAGS =
 LIBS = -lm -lwiringPi
 SOURCES = main.c MotorControllerWiringpi.cpp civetweb/civetweb.c civetweb/CivetServer.cpp
