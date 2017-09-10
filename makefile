@@ -4,8 +4,8 @@ INCLUDES =
 CFLAGS = -c -Wall $(INCLUDES)
 LDFLAGS =
 LIBS = -lm -lwiringPi
-SOURCES = main.c MotorControllerWiringpi.cpp
-HEADERS = MotorController.h MotorControllerWiringpi.h
+SOURCES = main.c MotorControllerWiringpi.cpp civetweb/civetweb.c civetweb/CivetServer.cpp
+HEADERS = MotorController.h MotorControllerWiringpi.h civetweb/civetweb.h civetweb/CivetServer.cpp
 OBJECTS = $(patsubst %.cpp,%.o,$(patsubst %.c,%.o,$(SOURCES)))
 EXECUTABLE = snoop
 
