@@ -21,7 +21,7 @@ static void checkRoot(void)
 static void startWebServer(void)
 {
 	const char *options[] = {
-	    "document_root", "webRoot", 0};
+	    "document_root", "webRoot", "listening_ports", "80", 0};
 
 	webServer = new CivetServer(options);
 }
