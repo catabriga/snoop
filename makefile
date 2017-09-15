@@ -4,8 +4,8 @@ INCLUDES =
 CFLAGS = -c -Wall -DUSE_WEBSOCKET -DLINUX $(INCLUDES)
 LDFLAGS =
 LIBS = -lm -lpthread -lrt -ldl -lwiringPi
-SOURCES = main.cpp MotorControllerWiringpi.cpp civetweb/civetweb.c civetweb/CivetServer.cpp
-HEADERS = MotorController.h MotorControllerWiringpi.h civetweb/civetweb.h civetweb/CivetServer.cpp
+SOURCES = main.cpp MotorControllerWiringpi.cpp WebInterface.cpp civetweb/civetweb.c civetweb/CivetServer.cpp
+HEADERS = MotorController.h MotorControllerWiringpi.h WebInterface.h civetweb/civetweb.h civetweb/CivetServer.cpp
 OBJECTS = $(patsubst %.cpp,%.o,$(patsubst %.c,%.o,$(SOURCES)))
 EXECUTABLE = snoop
 
