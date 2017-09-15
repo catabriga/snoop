@@ -5,7 +5,9 @@
 #include "MotorController.h"
 #include "MotorControllerWiringpi.h"
 
-#include "WebInterface.h"
+#include "civetweb/CivetServer.h"
+
+static CivetServer* webServer;
 
 static void checkRoot(void)
 {
@@ -16,11 +18,19 @@ static void checkRoot(void)
     }
 }
 
+static void startWebServer(void)
+{
+	const char *options[] = {
+	    "document_root", "webRoot", "listening_ports", "80", 0};
+
+	webServer = new CivetServer(options);
+}
+
 int main(void)
 {
     checkRoot();
 
-	WebInterface webInterface();
+	startWebServer();
 
     MotorController* motorController;
 
