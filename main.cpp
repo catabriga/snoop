@@ -20,7 +20,9 @@ int main(void)
 {
     checkRoot();
 
-	WebInterface* webInterface = new WebInterface();
+	WebInterface webInterface();
+	
+	WebInterface* a = &webInterface;
 
     MotorController* motorController;
 
