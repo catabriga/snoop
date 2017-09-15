@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  	<title>Snoop</title>
+
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <link href="styles/app.css" rel="stylesheet">
+    <link href="styles/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+      <header class="header">
+          <img class="logo" src="images/snoopy_pilot.svg"></i>
+          <h1 class="header_title">Snoop</h1>
+          <div class="btn-group" style="margin:15px;">
+             <button class="btn btn-primary">Action</button>
+             <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                 <span class="caret"></span>
+             </button>
+             <ul class="dropdown-menu">
+                <li><a tabindex="-1" href="#">Action</a></li>
+                <li><a tabindex="-1" href="#">Another action</a></li>
+                <li><a tabindex="-1" href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="#">Separated link</a></li>
+                <!-- dropdown menu links -->
+              </ul>
+          </div>
+      </header>
+
+      <main class="main">
+          <table id="joystick" align="center">
+              <tr>
+                  <td></td>
+                  <td>
+                    <button data-act="up" type="button" class="btn btn-secondary joystick up">
+                        <i class="fa fa-arrow-up fa-3x"></i>
+                    </button>
+                  </td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td>
+                      <button data-act="left" type="button" class="btn btn-secondary joystick left">
+                          <i class="fa fa-arrow-left fa-3x"></i>
+                      </button>
+                  </td>
+                  <td>
+                      <button type="button" data-act="down" class="btn btn-secondary joystick down">
+                          <i class="fa fa-arrow-down fa-3x"></i>
+                      </button>
+                  </td>
+                  <td>
+                      <button type="button" data-act="right" class="btn btn-secondary joystick right">
+                          <i class="fa fa-arrow-right fa-3x"></i>
+                      </button>
+                  </td>
+              </tr>
+              <tfoot style="text-align:center">
+                  <tr>
+                      <td colspan="3">
+                          <h6>(keyboard shortcut ASDW)</h6>
+                      </td>
+                  </tr>
+              </tfoot>
+          </table>
+      </main>
+
+    <script src="scripts/jquery-2.1.4.js"></script>
+    <script src="styles/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
