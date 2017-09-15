@@ -14,9 +14,7 @@ WebInterface::WebInterface(void)
     const char *options[] = {
 	    "document_root", "webRoot", "listening_ports", "80", 0};
 
-	pimplData->webServer = new CivetServer(options);
-	
-	printf("Server created\n");
+	pimplData->webServer = new CivetServer(options);	
 }
 
 WebInterface::~WebInterface(void)
