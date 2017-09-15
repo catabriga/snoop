@@ -20,12 +20,8 @@ int main(void)
 {
     checkRoot();
 
-	WebInterface webInterface();
+	WebInterface webInterface;
 	
-	webInterface.bla = 5;
-
-	WebInterface* a = &webInterface;
-
     MotorController* motorController;
 
     motorController = MotorControllerWiringpi::getInstance();
