@@ -3,9 +3,20 @@ CXX = g++ -std=c++0x
 INCLUDES =
 CFLAGS = -c -Wall -DUSE_WEBSOCKET -DLINUX $(INCLUDES)
 LDFLAGS =
-LIBS = -lm -lpthread -lrt -ldl -lwiringPi
-SOURCES = main.cpp MotorControllerWiringpi.cpp WebInterface.cpp civetweb/civetweb.c civetweb/CivetServer.cpp
-HEADERS = MotorController.h MotorControllerWiringpi.h WebInterface.h civetweb/civetweb.h civetweb/CivetServer.cpp
+LIBS = -lm -lpthread -lrt -ldl 
+SOURCES = main.cpp WebInterface.cpp civetweb/civetweb.c civetweb/CivetServer.cpp
+HEADERS = MotorController.h WebInterface.h civetweb/civetweb.h civetweb/CivetServer.cpp
+
+UNAME_P := $(shell uname -p)
+ifeq ($(UNAME_P),x86_64)    
+	SOURCES += MotorControllerNopi.cpp
+	HEADERS += MotorControllerNopi.h
+else
+	SOURCES += MotorControllerWiringpi.cpp
+	HEADERS += MotorControllerWiringpi.h
+	LIBS += -lwiringPi		
+endif
+
 OBJECTS = $(patsubst %.cpp,%.o,$(patsubst %.c,%.o,$(SOURCES)))
 EXECUTABLE = snoop
 
@@ -28,6 +39,11 @@ $(EXECUTABLE): $(OBJECTS)
 
 %.o : %.c
 	$(CC) $(CFLAGS) $< -o $@
+
+ifeq ($(UNAME_P),x86_64)    
+%.o : %.cpp $(HEADERS)
+	$(CXX) $(CFLAGS) $< -o $@
+endif
 
 clean:
 	rm -f *.o */*.o $(EXECUTABLE)

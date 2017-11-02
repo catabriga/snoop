@@ -3,7 +3,12 @@
 #include <cstdlib>
 
 #include "MotorController.h"
+
+#ifdef __arm__
 #include "MotorControllerWiringpi.h"
+#else
+#include "MotorControllerNopi.h"
+#endif
 
 #include "WebInterface.h"
 
@@ -24,8 +29,12 @@ int main(void)
 	
     MotorController* motorController;
 
-    motorController = MotorControllerWiringpi::getInstance();
-
+#ifdef __arm__
+	motorController = MotorControllerWiringpi::getInstance();
+#else
+	motorController = MotorControllerNopi::getInstance();
+#endif
+    
     while(1)
     {
         motorController->setMotorA(60);
