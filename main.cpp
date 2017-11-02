@@ -2,14 +2,7 @@
 #include <unistd.h>
 #include <cstdlib>
 
-#include "MotorController.h"
-
-#ifdef __arm__
-#include "MotorControllerWiringpi.h"
-#else
-#include "MotorControllerNopi.h"
-#endif
-
+#include "SnoopRobot.h"
 #include "WebInterface.h"
 
 static void checkRoot(void)
@@ -25,16 +18,11 @@ int main(void)
 {
     checkRoot();
 
-	WebInterface webInterface;
-	
-    MotorController* motorController;
-
-#ifdef __arm__
-	motorController = MotorControllerWiringpi::getInstance();
-#else
-	motorController = MotorControllerNopi::getInstance();
-#endif
+    WebInterface webInterface;
+	SnoopRobot robot;
     
+    robot.run();
+
     while(1)
     {
         motorController->setMotorA(60);
