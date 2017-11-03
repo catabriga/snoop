@@ -7,19 +7,21 @@
 
 static void checkRoot(void)
 {
-    if(getuid() != 0)
-    {
-        printf("Must run as root! Aborting...\n");
-        std::exit(EXIT_FAILURE);
-    }
+#ifdef __arm__
+	if(getuid() != 0)
+	{
+		printf("Must run as root! Aborting...\n");
+		std::exit(EXIT_FAILURE);
+	}
+#endif
 }
 
 int main(void)
 {
     checkRoot();
 
-    WebInterface webInterface;
 	SnoopRobot robot;
+    WebInterface webInterface(&robot);
     
     robot.run();
 

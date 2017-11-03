@@ -2,6 +2,8 @@
 
 #include "civetweb/CivetServer.h"
 
+void decodeSocketData(WebInterface* wi, char* data, size_t dataLen);
+
 class WebSocketHandler : public CivetWebSocketHandler
 {
 public:
@@ -21,7 +23,7 @@ public:
 	bool handleData(CivetServer* server, struct mg_connection* conn,
 					int bits, char* data, size_t data_len)
 	{
-		printf("ws data:%s\n", data);
+		decodeSocketData(webInterface, data, data_len);
 		return true;
 	}
 
@@ -36,15 +38,17 @@ struct WebInterfacePimplData
 {
 	CivetServer* webServer;
 	WebSocketHandler socketHandler;
+	SnoopRobot* robot;
 };
 
-WebInterface::WebInterface(void)
+WebInterface::WebInterface(SnoopRobot* robot)
 {
 	pimplData = new WebInterfacePimplData;
 	pimplData->socketHandler.webInterface = this;
+	pimplData->robot = robot;
 
     const char *options[] = {
-	    "document_root", "webRoot", "listening_ports", "80", 0};
+	    "document_root", "webRoot", "listening_ports", "8080", 0};
 
 	pimplData->webServer = new CivetServer(options);	
 	pimplData->webServer->addWebSocketHandler("", &(pimplData->socketHandler));
@@ -56,6 +60,7 @@ WebInterface::~WebInterface(void)
 	delete pimplData;
 }
 
+#define KEEP_ALIVE 1
 #define UP_DOWN 10
 #define UP_UP 11
 #define DOWN_DOWN 12
@@ -73,24 +78,35 @@ void decodeSocketData(WebInterface* wi, char* data, size_t dataLen)
     }
 
     char msgCode = data[0];
+    printf("MsgCode: %d\n", msgCode);
 
     switch(msgCode)
     {
+    	case KEEP_ALIVE:
+    		break;
         case UP_DOWN:
+        	wi->pimplData->robot->applyCommand(SnoopRobot::FORWARD);
             break;
         case UP_UP:
+        	wi->pimplData->robot->applyCommand(SnoopRobot::STOP_MOVE);
             break;
         case DOWN_DOWN:
+        	wi->pimplData->robot->applyCommand(SnoopRobot::BACKWARD);
             break;
         case DOWN_UP:
+        	wi->pimplData->robot->applyCommand(SnoopRobot::STOP_MOVE);
             break;
         case LEFT_DOWN:
+        	wi->pimplData->robot->applyCommand(SnoopRobot::LEFT);
             break;
         case LEFT_UP:
+        	wi->pimplData->robot->applyCommand(SnoopRobot::STOP_CURVE);
             break;
         case RIGHT_DOWN:
+        	wi->pimplData->robot->applyCommand(SnoopRobot::RIGHT);
             break;
         case RIGHT_UP:
+        	wi->pimplData->robot->applyCommand(SnoopRobot::STOP_CURVE);
             break;
     }
 

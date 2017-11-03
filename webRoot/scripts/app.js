@@ -1,103 +1,98 @@
+var protocol = 
+{
+    KEEP_ALIVE  : 1,
+    UP_DOWN     : 10,
+    UP_UP       : 11,
+    DOWN_DOWN   : 12,
+    DOWN_UP     : 13,
+    LEFT_DOWN   : 14,
+    LEFT_UP     : 15,
+    RIGHT_DOWN  : 16,
+    RIGHT_UP    : 17,
+};
+
 $(function() {
-    console.log("Document ready");
-   $("body").keypress(function(e){
-      switch(e.which) {
-        case 119:
-            action('up');
-            break;
-        case 115:
-            action('down');
-            break;
-        case 97:
-            action('left');
-            break;
-        case 100:
-            action('right');
-            break;
-      }
-    });
-
-
-	$("body").keydown(function(e){
+    console.log('Document ready');
+  
+	$('body').keydown(function(e){
 		console.log('keydown '+e.which);
 	  	switch(e.which) {
 			case 38:
 			case 87:
-				$("button.joystick.up").addClass("btn-danger");
+                action('UP_DOWN');
+				$('button.joystick.up').addClass('btn-danger');
 			    break;
 			case 40:
 			case 83:
-				$("button.joystick.down").addClass("btn-danger");
+                action('DOWN_DOWN');
+				$('button.joystick.down').addClass('btn-danger');
 			    break;
 			case 37:
 			case 65:
-				$("button.joystick.left").addClass("btn-danger");
+                action('LEFT_DOWN');
+				$('button.joystick.left').addClass('btn-danger');
 			    break;
 			case 39:
 			case 68:
-				$("button.joystick.right").addClass("btn-danger");
+                action('RIGHT_DOWN');
+				$('button.joystick.right').addClass('btn-danger');
 			    break;
 		  }
 	});
 
-	$("body").keyup(function(e){
+	$('body').keyup(function(e){
 		console.log('keyup '+e.which);
 	  	switch(e.which) {
 			case 38:
 			case 87:
-				$("button.joystick.up").removeClass("btn-danger");
+                action('UP_UP');
+				$('button.joystick.up').removeClass('btn-danger');
 			    break;
 			case 40:
 			case 83:
-				$("button.joystick.down").removeClass("btn-danger");
+                action('DOWN_UP');
+				$('button.joystick.down').removeClass('btn-danger');
 			    break;
 			case 37:
 			case 65:
-				$("button.joystick.left").removeClass("btn-danger");
+                action('LEFT_UP');
+				$('button.joystick.left').removeClass('btn-danger');
 			    break;
 			case 39:
 			case 68:
-				$("button.joystick.right").removeClass("btn-danger");
+                action('RIGHT_UP');
+				$('button.joystick.right').removeClass('btn-danger');
 			    break;
 		  }
 	});
 
-	//Se algum botão for clicado
     $('button').on('click', function(){
         $btn = $(this);
         action($btn.data('act'));
     });
 
-    function action(action){
-        switch(action) {
-            case 'up':
-                console.log('up');
-				websocket.send('up');
-                break;
-            case 'down':
-                console.log('down');
-				websocket.send('down');
-                break;
-            case 'left':
-                console.log('left');
-				websocket.send('left');
-                break;
-            case 'right':
-                console.log('right');
-				websocket.send('right');
-                break;
-            default:
-                console.log('action');
+    function action(action)
+    {
+        if(action in protocol)
+        {
+            console.log(action + ' ' + protocol[action]);
+            sendBinaryData(protocol[action])
         }
-
     }
 });
+
+function sendBinaryData(data)
+{
+    var dataArray = new Uint8Array(1);
+    dataArray[0] = data;
+    websocket.send(dataArray);
+}
 
 window.onload = function() 
 {
 	var url = 'ws://' + window.location.host;
 	websocket = new WebSocket(url);
-	websocket.binaryType = "arraybuffer";
+	websocket.binaryType = 'arraybuffer';
 	
 	websocket.onopen = function(ev)
 	{
@@ -106,6 +101,6 @@ window.onload = function()
 
 	function keepAlive()
 	{
-		websocket.send("k");
+		sendBinaryData(protocol['KEEP_ALIVE']);
 	}
 };
