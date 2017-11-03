@@ -9,7 +9,6 @@ public:
     WebInterface(void);
 	virtual ~WebInterface(void);
 
-private:
 	struct WebInterfacePimplData* pimplData;
 
 };

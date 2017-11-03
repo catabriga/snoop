@@ -9,7 +9,7 @@ public:
     SnoopRobot(void);
 	virtual ~SnoopRobot(void);
 
-    run(void);
+    void run(void);
 
 private:
 	MotorController* motorController;

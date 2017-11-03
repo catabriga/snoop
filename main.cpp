@@ -23,21 +23,5 @@ int main(void)
     
     robot.run();
 
-    while(1)
-    {
-        motorController->setMotorA(60);
-        motorController->setMotorB(60);
-
-        printf("Press something");
-        getchar();
-
-        motorController->setMotorA(-60);
-        motorController->setMotorB(-60);
-
-        printf("Press something");
-        getchar();
-
-    }
-
     return 0;
 }

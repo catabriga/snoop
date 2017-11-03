@@ -4,8 +4,8 @@ INCLUDES =
 CFLAGS = -c -Wall -DUSE_WEBSOCKET -DLINUX $(INCLUDES)
 LDFLAGS =
 LIBS = -lm -lpthread -lrt -ldl 
-SOURCES = main.cpp WebInterface.cpp civetweb/civetweb.c civetweb/CivetServer.cpp
-HEADERS = MotorController.h WebInterface.h civetweb/civetweb.h civetweb/CivetServer.cpp
+SOURCES = main.cpp WebInterface.cpp SnoopRobot.cpp civetweb/civetweb.c civetweb/CivetServer.cpp
+HEADERS = MotorController.h WebInterface.h SnoopRobot.h civetweb/civetweb.h civetweb/CivetServer.cpp
 
 UNAME_P := $(shell uname -p)
 ifeq ($(UNAME_P),x86_64)    

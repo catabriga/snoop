@@ -1,5 +1,7 @@
 #include "SnoopRobot.h"
 
+#include <cstdio>
+
 #ifdef __arm__
 #include "MotorControllerWiringpi.h"
 #else
